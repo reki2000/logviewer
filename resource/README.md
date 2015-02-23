@@ -1,0 +1,1 @@
+these sample log files are provided by: http://www.monitorware.com/en/logsamples/apache.php

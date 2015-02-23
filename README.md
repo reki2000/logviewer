@@ -26,3 +26,10 @@ Logviewer is a web access log viewer.
 * [ ] Apache date format parser
 * [ ] Optional timestamp handling for sorting
 * [ ] Cookie parser
+
+# License
+
+Apache 2.0
+
+Copyright reki2000@github.com
+
