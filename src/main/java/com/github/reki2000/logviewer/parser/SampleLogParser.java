@@ -18,8 +18,8 @@ public class SampleLogParser implements LogParser {
                         cols.get(1),
                         cols.get(2),
                         cols.get(3) + cols.get(4),
-                        Integer.valueOf(cols.get(6)),
-                        Integer.valueOf(cols.get(7)),
+                        "-".equals(cols.get(6)) ? 0 : Integer.parseInt(cols.get(6)),
+                        "-".equals(cols.get(7)) ? 0 : Integer.parseInt(cols.get(7)),
                         "", ""
                 );
             }
