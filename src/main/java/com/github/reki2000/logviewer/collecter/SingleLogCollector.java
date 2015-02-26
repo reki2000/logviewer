@@ -21,19 +21,11 @@ public class SingleLogCollector implements LogCollector {
         this.loader = loader;
     }
 
-    public CompletableFuture<Collection<LineView>> lineViews() {
-        return CompletableFuture.supplyAsync(() -> {
-            List<LineView> result = Collections.<LineView>emptyList();
-            try {
-                result = loader.stream()
-                        .map(s -> parser.parseLine(s))
-                        .filter(v -> v != null)
-                        .collect(Collectors.toList());
-            } catch (IOException e) {
-                // ignore
-            }
-            return result;
-        });
+    public Collection<LineView> collect() throws Exception {
+        return loader.stream()
+            .map(s -> parser.parseLine(s))
+            .filter(v -> v != null)
+            .collect(Collectors.toList());
     }
 
 }

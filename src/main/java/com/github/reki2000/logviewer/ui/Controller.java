@@ -50,7 +50,7 @@ public class Controller {
             loaders.stream()
                 .map(loader -> {
                     app.getTaskController().start(loader.name());
-                    return new SingleLogCollector(loader, parser).lineViews()
+                    return new SingleLogCollector(loader, parser).collectAsync()
                             .thenApply(v -> {
                                 app.getTaskController().end(loader.name());
                                 return v;
