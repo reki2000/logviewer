@@ -19,9 +19,9 @@ Logviewer is a web access log viewer.
 * [ ] Implement error notification for parsing in console window
 * [ ] Implement console in UI
 * [ ] Prepare big gzipped logfile (100M) and measure memory usage
-* [ ] Implement parallel task progress view in UI
+* [x] Implement parallel task progress view in UI
 * [ ] Make it configurable for special cookies
-* [ ] Make it configurable for external commands
+* [x] Make it configurable for external commands
 * [ ] Dependencies should be managed by Maven
 * [ ] Apache date format parser
 * [ ] Optional timestamp handling for sorting
