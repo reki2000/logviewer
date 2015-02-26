@@ -14,4 +14,8 @@ public interface LogLoader {
     default public Iterable<String> load() throws IOException {
         return stream().collect(Collectors.toList());
     }
+
+    default public String name() {
+        return "Hoge";
+    }
 }

@@ -53,8 +53,9 @@ public class Main extends Application {
         return this.table;
     }
 
-    HBox getTaskBar() {
-        return this.taskBar;
+    TaskController taskController = new TaskController(taskBar);
+    TaskController getTaskController() {
+        return this.taskController;
     }
 
     public static void main(String[] args) {

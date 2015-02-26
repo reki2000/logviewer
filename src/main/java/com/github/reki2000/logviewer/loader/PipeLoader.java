@@ -16,4 +16,8 @@ public class PipeLoader implements LogLoader {
         BufferedReader r = new BufferedReader(new InputStreamReader(Runtime.getRuntime().exec(cmd).getInputStream()));
         return r.lines();
     }
+
+    public String name() {
+        return cmd;
+    }
 }

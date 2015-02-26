@@ -14,4 +14,9 @@ public class FileLoader implements LogLoader {
     public Iterable<String> load() throws IOException {
         return Files.readAllLines(Paths.get(file));
     }
+
+    public String name() {
+        return file;
+    }
+
 }
