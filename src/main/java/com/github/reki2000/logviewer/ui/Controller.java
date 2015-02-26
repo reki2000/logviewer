@@ -9,9 +9,10 @@ import com.github.reki2000.logviewer.parser.SampleLogParser;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
@@ -20,10 +21,24 @@ public class Controller {
 
     public Controller(Main app) {
         this.app = app;
-        this.loaders = Arrays.asList(
-                new PipeLoader("c:\\apps\\git\\bin\\cat.exe c:\\me\\git\\logviewer\\resource\\test.log"),
-                new PipeLoader("c:\\apps\\git\\bin\\gzip.exe -dc c:\\me\\git\\logviewer\\resource\\test3.log.gz"),
-                new FileLoader("resource\\test2.log"));
+
+        this.loaders = new ArrayList<LogLoader>();
+        Properties props = new Properties();
+        try {
+            props.load(getClass().getClassLoader().getResourceAsStream("logviewer.properties"));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        for (int i=0; i<100; i++) {
+            String cmd = props.getProperty("cmd." + i);
+            if (cmd != null) {
+                loaders.add(new PipeLoader(cmd));
+            }
+            String file = props.getProperty("file." + i);
+            if (file != null) {
+                loaders.add(new FileLoader(file));
+            }
+        }
         this.parser = new SampleLogParser();
     }
 
