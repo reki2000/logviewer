@@ -1,9 +1,8 @@
 package com.github.reki2000.logviewer.parser;
 
-import com.github.reki2000.logviewer.model.LineView;
 import com.github.reki2000.logviewer.core.CsvParser;
+import com.github.reki2000.logviewer.model.LineView;
 
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -30,7 +29,7 @@ public class SampleLogParser implements LogParser {
                         parseApacheTime(cols.get(3) + cols.get(4)),
                         "-".equals(cols.get(6)) ? 0 : Integer.parseInt(cols.get(6)),
                         "-".equals(cols.get(7)) ? 0 : Integer.parseInt(cols.get(7)),
-                        "", "", ""
+                        "-", "-", "-"
                 );
             }
         } catch (Exception e) {
