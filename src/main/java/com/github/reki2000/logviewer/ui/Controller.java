@@ -40,7 +40,7 @@ public class Controller {
                 loaders.add(new FileLoader(file));
             }
         }
-        this.parser = new LtsvLogParser();
+        this.parser = new SampleLogParser();
     }
 
     final List<LogLoader> loaders;
