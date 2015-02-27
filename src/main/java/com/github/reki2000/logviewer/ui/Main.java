@@ -35,7 +35,7 @@ public class Main extends Application {
         stage.setTitle("LogViewer");
 
         table.setEditable(false);
-        table.getColumns().addAll(strCol("time"), strCol("server"), strCol("host"), strCol("user"), strCol("uri"), intCol("status"), intCol("elapsed"));
+        table.getColumns().addAll(strCol("id"), strCol("time"), strCol("server"), strCol("host"), strCol("user"), strCol("uri"), intCol("status"), intCol("elapsed"), strCol("referrer"), strCol("ua"));
         table.setItems(FXCollections.emptyObservableList());
 
         Button loadButton = new Button("Load");

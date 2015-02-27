@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class LineView {
+    private final SimpleStringProperty  id;
     private final SimpleStringProperty  time;
     private final SimpleStringProperty  host;
     private final SimpleStringProperty  server;
@@ -15,7 +16,8 @@ public class LineView {
     private final SimpleStringProperty  ua;
     private final SimpleStringProperty  user;
 
-    public LineView(String host, String uri, int port, String user, String server, String time, int status, int elapsed, String referrer, String ua) {
+    public LineView(String host, String uri, int port, String user, String server, String time, int status, int elapsed, String referrer, String ua, String id) {
+        this.id       = new SimpleStringProperty(id);
         this.time     = new SimpleStringProperty(time);
         this.host     = new SimpleStringProperty(host);
         this.server   = new SimpleStringProperty(server);
@@ -38,4 +40,5 @@ public class LineView {
     public int    getElapsed()  { return elapsed.get(); }
     public int    getPort()     { return port.get(); }
     public String getTime()     { return time.get(); }
+    public String getId()       { return id.get(); }
 }

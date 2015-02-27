@@ -1,5 +1,6 @@
 package com.github.reki2000.logviewer.parser;
 
+import com.github.reki2000.logviewer.core.CsvParser;
 import org.junit.Test;
 
 import java.util.Collection;

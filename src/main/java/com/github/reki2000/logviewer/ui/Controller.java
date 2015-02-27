@@ -5,6 +5,7 @@ import com.github.reki2000.logviewer.loader.FileLoader;
 import com.github.reki2000.logviewer.loader.LogLoader;
 import com.github.reki2000.logviewer.loader.PipeLoader;
 import com.github.reki2000.logviewer.parser.LogParser;
+import com.github.reki2000.logviewer.parser.LtsvLogParser;
 import com.github.reki2000.logviewer.parser.SampleLogParser;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -32,14 +33,14 @@ public class Controller {
         for (int i=0; i<100; i++) {
             String cmd = props.getProperty("cmd." + i);
             if (cmd != null) {
-                loaders.add(new PipeLoader(cmd));
+                loaders.add(new PipeLoader("cmd" + i, cmd));
             }
             String file = props.getProperty("file." + i);
             if (file != null) {
                 loaders.add(new FileLoader(file));
             }
         }
-        this.parser = new SampleLogParser();
+        this.parser = new LtsvLogParser();
     }
 
     final List<LogLoader> loaders;
