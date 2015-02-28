@@ -1,4 +1,6 @@
-package com.github.reki2000.logviewer.loader;
+package com.github.reki2000.logviewer.loader.impl;
+
+import com.github.reki2000.logviewer.loader.LogLoader;
 
 import java.io.IOException;
 import java.nio.file.Files;

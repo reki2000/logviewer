@@ -1,13 +1,8 @@
 package com.github.reki2000.logviewer.parser;
 
-import com.github.reki2000.logviewer.core.CsvParser;
 import org.junit.Test;
 
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Collection;
-import java.util.Locale;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;

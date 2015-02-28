@@ -1,6 +1,6 @@
 package com.github.reki2000.logviewer.parser;
 
-import com.github.reki2000.logviewer.core.CsvParser;
+import com.github.reki2000.logviewer.lib.CsvParser;
 import com.github.reki2000.logviewer.model.LineView;
 
 import java.time.ZonedDateTime;

@@ -1,4 +1,4 @@
-package com.github.reki2000.logviewer.core;
+package com.github.reki2000.logviewer.lib;
 
 import java.util.ArrayList;
 import java.util.List;

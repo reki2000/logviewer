@@ -1,17 +1,18 @@
 package com.github.reki2000.logviewer.ui;
 
+import com.github.reki2000.logviewer.loader.Param;
 import com.github.reki2000.logviewer.collecter.SingleLogCollector;
-import com.github.reki2000.logviewer.loader.FileLoader;
-import com.github.reki2000.logviewer.loader.LogLoader;
-import com.github.reki2000.logviewer.loader.PipeLoader;
+import com.github.reki2000.logviewer.loader.impl.FileLoaderBuilder;
+import com.github.reki2000.logviewer.loader.LogLoaderBuilder;
+import com.github.reki2000.logviewer.loader.impl.PipeLoaderBuilder;
 import com.github.reki2000.logviewer.parser.LogParser;
-import com.github.reki2000.logviewer.parser.LtsvLogParser;
 import com.github.reki2000.logviewer.parser.SampleLogParser;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.CompletableFuture;
@@ -23,7 +24,7 @@ public class Controller {
     public Controller(Main app) {
         this.app = app;
 
-        this.loaders = new ArrayList<LogLoader>();
+        this.builders = new ArrayList<LogLoaderBuilder>();
         Properties props = new Properties();
         try {
             props.load(getClass().getClassLoader().getResourceAsStream("logviewer.properties"));
@@ -31,27 +32,31 @@ public class Controller {
             System.out.println(e.getMessage());
         }
         for (int i=0; i<100; i++) {
-            String cmd = props.getProperty("cmd." + i);
+            String cmd = props.getProperty("log." + i + ".cmd");
             if (cmd != null) {
-                loaders.add(new PipeLoader("cmd" + i, cmd));
+                builders.add(new PipeLoaderBuilder("pipe" + i, cmd)); break;
             }
-            String file = props.getProperty("file." + i);
+
+            String file = props.getProperty("log." + i + ".file");
             if (file != null) {
-                loaders.add(new FileLoader(file));
+                builders.add(new FileLoaderBuilder("file" + i, file)); break;
             }
         }
         this.parser = new SampleLogParser();
     }
 
-    final List<LogLoader> loaders;
+    final List<LogLoaderBuilder> builders;
     final LogParser parser;
+    final List<String> servers = Arrays.asList("server1", "server2", "server3");
 
-    public void onLoadButton() {
+    public void onLoadButton(String yyyymmdd, String keyword) {
         CompletableFuture.supplyAsync(() ->
-            loaders.stream()
+            builders.stream()
+                .flatMap(builder -> builder.build(servers.stream(), new Param(yyyymmdd, keyword)))
                 .map(loader -> {
                     app.getTaskController().start(loader.name());
-                    return new SingleLogCollector(loader, parser).collectAsync()
+                    return new SingleLogCollector(loader, parser)
+                            .collectAsync()
                             .thenApply(v -> {
                                 app.getTaskController().end(loader.name());
                                 return v;

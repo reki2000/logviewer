@@ -15,7 +15,5 @@ public interface LogLoader {
         return stream().collect(Collectors.toList());
     }
 
-    default public String name() {
-        return "Hoge";
-    }
+    public String name();
 }

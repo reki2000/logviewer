@@ -1,9 +1,8 @@
 package com.github.reki2000.logviewer.parser;
 
 import com.github.reki2000.logviewer.model.LineView;
-import com.github.reki2000.logviewer.core.LtsvParser;
+import com.github.reki2000.logviewer.lib.LtsvParser;
 
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
